@@ -2,12 +2,19 @@
 
 import { useState } from 'react';
 
+interface CalorieResults {
+  scientificEstimate: number | null;
+  metValue: number | null;
+  formula: string | null;
+  aiEstimate: number | null;
+}
+
 export default function Home() {
   const [workout, setWorkout] = useState('');
   const [duration, setDuration] = useState('');
   const [weight, setWeight] = useState('');
   const [weightUnit, setWeightUnit] = useState<'lb' | 'kg'>('lb');
-  const [results, setResults] = useState<any>(null);
+  const [results, setResults] = useState<CalorieResults | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -179,7 +186,7 @@ export default function Home() {
                   </h2>
                 </div>
                 <p className="text-amber-700 dark:text-amber-300 text-sm mb-3">
-                  "{workout}" is not in our MET database. Try a more specific activity name like:
+                  &quot;{workout}&quot; is not in our MET database. Try a more specific activity name like:
                 </p>
                 <div className="text-xs text-amber-600 dark:text-amber-400">
                   • Running, Jogging, Walking, Swimming<br/>
